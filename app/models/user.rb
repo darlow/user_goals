@@ -7,6 +7,7 @@ class User
   property :name,         String
   property :email,        String
   property :avatar,       String # path to avatar image
+  property :reward,       Text
   property :reminder,     Date
   property :repeat,       Enum[:none, :daily, :weekly, :monthly]
   
@@ -19,6 +20,7 @@ end
 User.fixture {{
   :name                  => Randgen.name,
   :email                 => "#{/\w+/.gen}@#{/\w+/.gen}.#{/co.uk|com|net|org/.gen}",
+  :reward                => /[:sentence:]/.gen,
   :password              => (password = /\w+/.gen),
   :password_confirmation => password
 }}
@@ -33,6 +35,7 @@ get '/user/:id.json' do |id|
     :name       => user.name,
     :email      => user.email,
     :avatar     => user.avatar,
+    :reward     => user.reward,
     :reminder   => user.reminder,
     :repeat     => user.repeat,
     :goals      => user.plans.map {|p|

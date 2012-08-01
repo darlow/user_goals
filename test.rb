@@ -27,6 +27,7 @@ h = {
   :name       => user.name,
   :email      => user.email,
   :avatar     => user.avatar,
+  :reward     => user.reward,
   :reminder   => user.reminder,
   :repeat     => user.repeat,
   :goals      => user.plans.map {|p|

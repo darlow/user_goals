@@ -1,0 +1,14 @@
+:development: &defaults
+  :adapter: mysql
+  :database: user_goals_development
+  :username: user_goals
+  :password: 
+  :host: localhost
+
+:test:
+  <<: *defaults
+  :database: user_goals_test
+
+:production:
+  <<: *defaults
+  :database: user_goals_production

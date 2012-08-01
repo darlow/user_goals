@@ -6,6 +6,7 @@ class User
   property :id,           Serial
   property :name,         String
   property :email,        String
+  property :password,     String # replace with something better!
   property :avatar,       String # path to avatar image
   property :reminder,     Date
   property :repeat,       Enum[:none, :daily, :weekly, :monthly]

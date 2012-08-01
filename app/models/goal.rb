@@ -7,9 +7,7 @@ class Goal
   property :description,  String, :length => 255
   
   belongs_to :item
-  
-  has n, :users, :through => :goal_users
-  
+  has n, :plans
 end
 
 # get all goals belonging to the food with key of ‘id’

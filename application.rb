@@ -4,7 +4,6 @@ require 'json'
 Bundler.require
 
 configure :development do
-  # DataMapper.setup :default, YAML.load(File.new("app/config/database.yml"))[:development]
   DataMapper.setup :default, "sqlite::memory:"
 end
 
@@ -14,7 +13,11 @@ DataMapper.finalize
 DataMapper.auto_upgrade!
 
 get '/init' do
-  Category.import_from_yaml
-  10.times { User.generate }
-  "Initialised"
+  unless Category.any?
+    Category.import_from_yaml
+    10.times { User.generate }
+    "Initialised"
+  else
+    "Previously initialised"
+  end
 end

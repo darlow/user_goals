@@ -10,7 +10,7 @@ class User
   property :reminder,     Date
   property :repeat,       Enum[:none, :daily, :weekly, :monthly]
   
-  has n, :goals, :through => Resource
+  has n, :plans
   has n, :statistics
   
   is :authenticatable
@@ -28,7 +28,7 @@ get '/user/:id.json' do |id|
   
   user = User.get(id)
   
-  {
+  user_data = {
     :id         => user.id,
     :name       => user.name,
     :email      => user.email,
@@ -37,5 +37,9 @@ get '/user/:id.json' do |id|
     :repeat     => user.repeat,
     :goals      => user.goals,
     :statistics => user.statistics
-  }.to_json
+  }
+  
+  # user_data[:goals] = user.
+  
+  user_data.to_json
 end

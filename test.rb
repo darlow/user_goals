@@ -3,11 +3,11 @@ require './application'
 Category.import_from_yaml
 
 user = User.generate
-user.goals.push Goal.get(1)
-user.goals.push Goal.get(2)
-user.goals.push Goal.get(3)
-user.goals.push Goal.get(4)
-user.goals.push Goal.get(5)
+user.plans.push Goal.get(1)
+user.plans.push Goal.get(2)
+user.plans.push Goal.get(3)
+user.plans.push Goal.get(4)
+user.plans.push Goal.get(5)
 user.save
 
 puts({

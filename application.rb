@@ -12,5 +12,8 @@ Dir[File.join(File.dirname(__FILE__), 'app/**/*.rb')].sort.each { |f| require f 
 DataMapper.finalize
 DataMapper.auto_upgrade!
 
-Category.import_from_yaml
-10.times { User.generate }
+get '/init' do
+  Category.import_from_yaml
+  10.times { User.generate }
+  "Initialised"
+end

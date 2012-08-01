@@ -6,19 +6,21 @@ class User
   property :id,           Serial
   property :name,         String
   property :email,        String
-  property :password,     String # replace with something better!
   property :avatar,       String # path to avatar image
   property :reminder,     Date
   property :repeat,       Enum[:none, :daily, :weekly, :monthly]
   
   has n, :goals, :through => Resource
   has n, :statistics
+  
+  is :authenticatable
 end
 
 User.fixture {{
-  :name     => Randgen.name,
-  :email    => "#{/\w+/.gen}@#{/\w+/.gen}.#{/co.uk|com|net|org/.gen}",
-  :password => /\w+/.gen
+  :name                  => Randgen.name,
+  :email                 => "#{/\w+/.gen}@#{/\w+/.gen}.#{/co.uk|com|net|org/.gen}",
+  :password              => (password = /\w+/.gen),
+  :password_confirmation => password
 }}
 
 get '/user/:id.json' do |id|

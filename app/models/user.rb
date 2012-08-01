@@ -35,11 +35,18 @@ get '/user/:id.json' do |id|
     :avatar     => user.avatar,
     :reminder   => user.reminder,
     :repeat     => user.repeat,
-    :goals      => user.goals,
+    :goals      => user.plans.map {|p|
+      {
+        :plan_id     => p.id, 
+        :goal_id     => p.goal.id, 
+        :title       => p.goal.title, 
+        :description => p.goal.description, 
+        :done        => p.done, 
+        :priority    => p.priority
+      }
+    },
     :statistics => user.statistics
   }
-  
-  # user_data[:goals] = user.
   
   user_data.to_json
 end
